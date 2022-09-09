@@ -50,24 +50,16 @@ class App extends React.Component{
     })
   }
 
-  // saveToSpotify(tracks, name) {
-  //   const playListTracks = tracks.map(track => JSON.stringify(track)).join('\n');
-  //   console.log(`Saving tracks: \n${playListTracks} \nto Spotify to Playlist ${name}`);
-  //   const uris = tracks.map(track => `${track.uri}`)
-  //   return Spotify.save(uris, name)
-  //   .then(console.log('Playlist saved to Spotify'));
-  // }
-
   savePlaylist(name, tracks){
     const playListTracks = tracks.map(track => JSON.stringify(track)).join('\n');
     console.log(`Saving tracks: \n${playListTracks} \nto Spotify to Playlist ${name}`);
     const uris = tracks.map(track => `${track.uri}`);
     return Spotify.savePlaylist(name, uris)
-    .then(console.log('Playlist saved to Spotify!!!'));
-    // this.setState({
-    //   playlistName: 'New Playlist',
-    //   playlistTracks: []
-    // })
+    .then(console.log('Playlist saved to Spotify!!!'))
+    .then(this.setState({
+      playlistName: 'New Playlist',
+      playlistTracks: []
+    }));
   }
 
   search(searchTerm){
